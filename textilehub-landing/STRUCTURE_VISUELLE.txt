@@ -1,0 +1,426 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    STRUCTURE LANDING PAGE TEXTILEHUB                         ║
+║                      Programme Atelier Fondateur                             ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                           📄 INDEX.HTML                                      │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 1️⃣  SECTION HERO                                                            │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : Capter l'attention + Qualifier immédiatement                 │
+│                                                                              │
+│  • Logo TextileHub                                                           │
+│  • Badge : "🔥 Programme limité — 10 places disponibles" [pulse]            │
+│  • Titre H1 : "Transformez votre atelier textile                            │
+│                en boutique professionnelle"                                  │
+│  • Sous-titre : "Centralisez vos commandes, présentez vos produits..."      │
+│  • Qualification : "Pour les ateliers de flocage, broderie, DTF..."         │
+│  • [CTA] "Rejoindre le Programme Atelier Fondateur" ← OUVRE MODALE          │
+│  • Bénéfices clés : ✓ Tarif à vie • ✓ Accès anticipé • ✓ Accompagnement   │
+│  • Mockup visuel (placeholder boutique)                                      │
+│                                                                              │
+│  📊 TRACKING : hero_cta_click                                                │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 2️⃣  SECTION PROBLÈME                                                        │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : Créer la résonance émotionnelle                              │
+│                                                                              │
+│  • Titre : "Gérer votre atelier textile ne devrait pas être aussi compliqué"│
+│  • Sous-titre : "Vous reconnaissez ces situations ?"                         │
+│                                                                              │
+│  ┌────────────────────────┬────────────────────────┐                        │
+│  │ ❌ PROBLÈME 1          │ ❌ PROBLÈME 2          │                        │
+│  │ Commandes dispersées   │ Erreurs personnalisa.  │                        │
+│  ├────────────────────────┼────────────────────────┤                        │
+│  │ ❌ PROBLÈME 3          │ ❌ PROBLÈME 4          │                        │
+│  │ "Où en est ma cmd ?"   │ Pas de catalogue pro   │                        │
+│  └────────────────────────┴────────────────────────┘                        │
+│  │                 ❌ PROBLÈME 5                    │                        │
+│  │          Aucune vision de l'activité            │                        │
+│  └─────────────────────────────────────────────────┘                        │
+│                                                                              │
+│  📊 TRACKING : problem_section_read (scroll depth)                           │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 3️⃣  SECTION SOLUTION                                                        │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : Présenter TextileHub simplement                              │
+│                                                                              │
+│  • Titre : "TextileHub centralise votre activité textile"                   │
+│  • Sous-titre : "Une plateforme pensée pour les ateliers..."                │
+│                                                                              │
+│  ┌──────────────┬──────────────┬──────────────┐                            │
+│  │   PILIER 1   │   PILIER 2   │   PILIER 3   │                            │
+│  ├──────────────┼──────────────┼──────────────┤                            │
+│  │ 🛍️  Boutique  │ 🎨 Personna- │ 📋 Gestion   │                            │
+│  │     pro      │   lisation   │ centralisée  │                            │
+│  │              │   simplifiée │              │                            │
+│  │ Catalogue    │ Clients      │ Commandes +  │                            │
+│  │ en ligne     │ créent leur  │ production + │                            │
+│  │ accessible   │ design       │ paiements    │                            │
+│  │ 24/7         │ directement  │ au même      │                            │
+│  │              │              │ endroit      │                            │
+│  └──────────────┴──────────────┴──────────────┘                            │
+│                                                                              │
+│  • [CTA soft] "Voir comment ça fonctionne →"                                │
+│                                                                              │
+│  📊 TRACKING : solution_cta_click                                            │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 4️⃣  SECTION COMMENT ÇA MARCHE                                               │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : Rassurer sur la simplicité                                   │
+│                                                                              │
+│  • Titre : "Comment ça fonctionne ?"                                         │
+│  • Sous-titre : "Quatre étapes pour moderniser votre atelier"               │
+│                                                                              │
+│       ┌───┐         ┌───┐         ┌───┐         ┌───┐                      │
+│       │ 1 │────────→│ 2 │────────→│ 3 │────────→│ 4 │                      │
+│       └───┘         └───┘         └───┘         └───┘                      │
+│     Créez votre   Partagez     Recevez les    Gérez la                     │
+│      boutique    votre lien     commandes    production                    │
+│                                                                              │
+│  • [CTA] "Rejoindre le programme"                                            │
+│                                                                              │
+│  📊 TRACKING : process_cta_click                                             │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 5️⃣  ❤️  SECTION PROGRAMME ATELIER FONDATEUR (CŒUR DE LA PAGE)              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : CONVERSION PRINCIPALE                                        │
+│                                                                              │
+│  • Badge : "Places limitées" [pulse]                                         │
+│  • Titre XXL : "Rejoignez le Programme Atelier Fondateur"                   │
+│  • Sous-titre : "Soyez parmi les 10 premiers ateliers..."                   │
+│                                                                              │
+│  ┌──────────────────────────────────────────────────┐                       │
+│  │            CE QUE VOUS OBTENEZ :                 │                       │
+│  ├──────────────────────────────────────────────────┤                       │
+│  │  ✅ Tarif fondateur à vie       ✅ Accès anticipé │                       │
+│  │  ✅ Accompagnement personnalisé ✅ Influence      │                       │
+│  │  ✅ Communauté privée           ✅ Statut fond.   │                       │
+│  └──────────────────────────────────────────────────┘                       │
+│                                                                              │
+│           ┌────────────────────────────────┐                                │
+│           │  [CTA PRINCIPAL - GROS BOUTON] │                                │
+│           │    "Postuler maintenant"       │ ← OUVRE MODALE                 │
+│           └────────────────────────────────┘                                │
+│                                                                              │
+│  ⚡ Plus que 10 places pour cette première cohorte                           │
+│  Réponse sous 48h • Sans engagement                                         │
+│                                                                              │
+│  📊 TRACKING : program_cta_click ⭐⭐⭐ MÉTRIQUE PRINCIPALE                  │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 6️⃣  SECTION VISION / POURQUOI                                               │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : Crédibilité (remplace preuve sociale inexistante)            │
+│                                                                              │
+│  • Titre : "Pourquoi nous construisons TextileHub"                           │
+│                                                                              │
+│  • 3 paragraphes expliquant :                                                │
+│    - Le problème observé (ateliers désorganisés)                             │
+│    - La vision (plateforme adaptée aux réalités africaines)                  │
+│    - L'approche (construire AVEC les premiers ateliers)                      │
+│                                                                              │
+│  • Encart bleu :                                                             │
+│    "🚀 Nous ouvrons les premières places aux ateliers qui souhaitent        │
+│     construire TextileHub avec nous."                                        │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 7️⃣  SECTION FAQ                                                             │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : Lever les objections                                         │
+│                                                                              │
+│  • Titre : "Questions fréquentes"                                            │
+│                                                                              │
+│  ▼ Qui peut rejoindre le Programme Atelier Fondateur ?                      │
+│  ▼ Est-ce gratuit ?                                                          │
+│  ▼ Dois-je avoir des compétences techniques ?                                │
+│  ▼ Que se passe-t-il après ma candidature ?                                 │
+│  ▼ Combien de temps dure le programme ?                                     │
+│  ▼ TextileHub fonctionne-t-il dans mon pays ?                               │
+│  ▼ Pourquoi seulement 10 places ?                                           │
+│                                                                              │
+│  [Accordéon Alpine.js — clic ouvre/ferme]                                   │
+│                                                                              │
+│  📊 TRACKING : faq_item_click                                                │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 8️⃣  SECTION CTA FINAL                                                       │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  🎯 OBJECTIF : Dernière opportunité de conversion                           │
+│                                                                              │
+│  • Titre : "Prêt à moderniser votre atelier textile ?"                       │
+│  • Sous-titre : "Rejoignez les premiers ateliers qui construisent..."       │
+│                                                                              │
+│           ┌────────────────────────────────┐                                │
+│           │  [CTA GROS BOUTON]             │                                │
+│           │  "Postuler au Programme        │ ← OUVRE MODALE                 │
+│           │   Atelier Fondateur"           │                                │
+│           └────────────────────────────────┘                                │
+│                                                                              │
+│  Plus que 10 places disponibles                                             │
+│                                                                              │
+│  ───────────────────────────────────────────                                │
+│                                                                              │
+│  Des questions avant de postuler ?                                           │
+│  [Bouton WhatsApp] "Contactez-nous sur WhatsApp"                            │
+│                                                                              │
+│  📊 TRACKING : footer_cta_click, whatsapp_click                              │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ FOOTER                                                                       │
+├──────────────────────────────────────────────────────────────────────────────┤
+│  © 2026 TextileHub. Tous droits réservés.                                   │
+│  Plateforme SaaS pour ateliers de personnalisation textile en Afrique       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                     🔲 MODALE DE QUALIFICATION                               │
+│                         (Alpine.js x-show)                                   │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    [Overlay semi-transparent — ferme au clic]
+
+        ┌────────────────────────────────────────────────┐
+        │  [X]  Programme Atelier Fondateur              │
+        │       Complétez votre candidature en 2 minutes │
+        │                                                │
+        │  [▓▓▓▓▓░░░] Étape 1/3                          │
+        ├────────────────────────────────────────────────┤
+        │                                                │
+        │  ═══ ÉTAPE 1 : VOS INFORMATIONS ═══           │
+        │                                                │
+        │  Prénom * [____________]                       │
+        │  Nom * [____________]                          │
+        │  Numéro WhatsApp * [____________]              │
+        │  Email * [____________]                        │
+        │  Nom de votre atelier * [____________]         │
+        │  Ville * [____________]                        │
+        │  Pays * [▼ Bénin                    ]          │
+        │                                                │
+        │                         [Suivant →]            │
+        └────────────────────────────────────────────────┘
+
+                    📊 TRACKING : form_opened
+
+
+        ┌────────────────────────────────────────────────┐
+        │  [X]  Programme Atelier Fondateur              │
+        │                                                │
+        │  [▓▓▓▓▓▓▓▓░] Étape 2/3                         │
+        ├────────────────────────────────────────────────┤
+        │                                                │
+        │  ═══ ÉTAPE 2 : VOTRE ACTIVITÉ ═══             │
+        │                                                │
+        │  Types de personnalisation * (plusieurs choix) │
+        │  ☐ Flocage                                     │
+        │  ☐ DTF (Direct to Film)                        │
+        │  ☐ Broderie                                    │
+        │  ☐ Sérigraphie                                 │
+        │  ☐ Sublimation                                 │
+        │  ☐ Autre                                       │
+        │                                                │
+        │  Commandes/mois * [▼ 10-30 commandes ]         │
+        │  Outils actuels [____________]                 │
+        │  Problème principal * [▼ Commandes dispersées] │
+        │                                                │
+        │  [← Retour]                  [Suivant →]       │
+        └────────────────────────────────────────────────┘
+
+            📊 TRACKING : qualification_step_complete (step: 1)
+
+
+        ┌────────────────────────────────────────────────┐
+        │  [X]  Programme Atelier Fondateur              │
+        │                                                │
+        │  [▓▓▓▓▓▓▓▓▓] Étape 3/3                         │
+        ├────────────────────────────────────────────────┤
+        │                                                │
+        │  ═══ ÉTAPE 3 : VOTRE INTÉRÊT ═══              │
+        │                                                │
+        │  Fonctionnalités intéressantes *               │
+        │  [▼ Gestion centralisée des commandes ]        │
+        │                                                │
+        │  Intention d'utilisation *                     │
+        │  [▼ Oui, immédiatement              ]          │
+        │                                                │
+        │  Disposition à payer *                         │
+        │  [▼ Oui, si tarif raisonnable       ]          │
+        │                                                │
+        │  Motivation (optionnel)                        │
+        │  [________________________________]             │
+        │  [________________________________]             │
+        │                                                │
+        │  ☑ J'accepte d'être contacté par TextileHub * │
+        │                                                │
+        │  [← Retour]    [Envoyer ma candidature]        │
+        └────────────────────────────────────────────────┘
+
+            📊 TRACKING : qualification_step_complete (step: 2)
+                         qualification_complete
+                         form_submitted ⭐⭐⭐
+
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                   📄 CONFIRMATION.HTML                                       │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+        ┌────────────────────────────────────────────────┐
+        │                                                │
+        │              ┌───────┐                         │
+        │              │   ✓   │ (icône verte)          │
+        │              └───────┘                         │
+        │                                                │
+        │      Candidature reçue ! 🎉                    │
+        │                                                │
+        │  Merci pour votre intérêt pour le Programme   │
+        │  Atelier Fondateur TextileHub.                │
+        │                                                │
+        │  ┌──────────────────────────────────────────┐ │
+        │  │ Prochaines étapes :                      │ │
+        │  │                                          │ │
+        │  │ 1. Étude de votre profil sous 48h       │ │
+        │  │ 2. Contact par WhatsApp si sélectionné  │ │
+        │  │ 3. Présentation détaillée de TextileHub │ │
+        │  │ 4. Vous décidez de rejoindre ou non     │ │
+        │  └──────────────────────────────────────────┘ │
+        │                                                │
+        │  📧 Vérifiez vos emails (et spams)             │
+        │                                                │
+        │  [Bouton WhatsApp] Contactez-nous              │
+        │                                                │
+        │  ← Retour à l'accueil                          │
+        │                                                │
+        └────────────────────────────────────────────────┘
+
+            📊 TRACKING : Lead (Facebook Pixel)
+                         conversion (Google Analytics)
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                       ÉVÉNEMENTS DE TRACKING                                 ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+  Baseline :
+    • PageView (automatique)
+    • scroll_50 (50% de la page)
+    • scroll_100 (100% de la page)
+
+  Engagement :
+    • hero_cta_click
+    • solution_cta_click
+    • process_cta_click
+    • faq_item_click
+
+  Intention (CRITIQUES) :
+    ⭐ program_cta_click (clic sur CTA Programme Fondateur)
+    ⭐ form_opened (ouverture de la modale)
+    ⭐ qualification_step_complete (validation chaque étape)
+
+  Conversion (MÉTRIQUE PRINCIPALE) :
+    ⭐⭐⭐ form_submitted (soumission du formulaire)
+    ⭐⭐⭐ Lead (Facebook Pixel — page confirmation)
+
+  Contact :
+    • whatsapp_click
+    • footer_cta_click
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                        FUNNEL DE CONVERSION                                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+  1000 visiteurs (Facebook Ads)
+    │
+    ├─ 50% scroll jusqu'au Programme Fondateur → 500 engagés
+    │
+    ├─ 10% cliquent sur le CTA principal → 50 intentions
+    │
+    ├─ 80% ouvrent le formulaire → 40 formulaires ouverts
+    │
+    ├─ 50% complètent et soumettent → 20 candidatures
+    │
+    └─ 50% qualifiées → 10 ateliers qualifiés ✅ OBJECTIF ATTEINT
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                         FICHIERS DU PROJET                                   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+  textilehub-landing/
+  │
+  ├── index.html ✅                  Landing page principale
+  ├── confirmation.html ✅           Page après soumission
+  │
+  ├── README.md ✅                   Documentation technique complète
+  ├── QUICK_START.md ✅              Démarrage rapide (10 min)
+  ├── CHECKLIST.md ✅                Tests avant lancement
+  ├── SUMMARY.md ✅                  Récapitulatif projet
+  ├── COPYWRITING_GUIDE.md ✅        Alternatives de copywriting
+  ├── PROJECT_BRIEF.md ✅            Brief projet complet
+  ├── STRUCTURE_VISUELLE.txt ✅      Ce fichier
+  │
+  ├── netlify.toml ✅                Configuration Netlify
+  ├── .gitignore ✅                  Fichiers à ignorer (Git)
+  │
+  └── assets/ ✅                     Logos, mockups, images
+      └── .gitkeep
+
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    🚀 PRÊT POUR LE LANCEMENT                                 ║
+║                                                                              ║
+║  Configuration : ⚙️  3 éléments à personnaliser (Pixel, GA4, WhatsApp)      ║
+║  Tests : ✅ Checklist complète fournie (CHECKLIST.md)                        ║
+║  Documentation : 📚 7 fichiers de documentation                              ║
+║  Déploiement : 🌐 Netlify drag & drop (30 secondes)                         ║
+║                                                                              ║
+║  OBJECTIF : 10 candidatures qualifiées en 2 semaines                        ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝

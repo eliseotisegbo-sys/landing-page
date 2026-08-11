@@ -1,0 +1,28 @@
+# Netlify
+.netlify/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Éditeurs
+.vscode/
+.idea/
+*.sublime-*
+
+# Fichiers temporaires
+*.tmp
+*.log
+*~
+
+# Node modules (si utilisé plus tard)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build files (si Tailwind build plus tard)
+dist/
+build/
+
+# Environnement
+.env

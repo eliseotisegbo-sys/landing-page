@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidature Programme Fondateur | TextileHub</title>
+    
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN for demo) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        background: '#0B0F19',
+                        surface: '#111827',
+                        primary: '#3B82F6',
+                        accent: '#8B5CF6',
+                        accentGlow: '#A78BFA',
+                        textMain: '#F3F4F6',
+                        textMuted: '#9CA3AF',
+                        success: '#10B981',
+                        error: '#EF4444'
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Film Grain Overlay */
+        .noise-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Forms */
+        .input-glass {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #F3F4F6;
+            transition: all 0.3s ease;
+        }
+        .input-glass:focus {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: #8B5CF6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+        }
+        .input-glass::placeholder {
+            color: #6B7280;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        .btn-primary:hover {
+            box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
+            transform: translateY(-1px);
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #E5E7EB;
+            transition: all 0.3s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Background Mesh Gradient */
+        .bg-mesh {
+            background: radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Transitions */
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body class="bg-background text-textMain font-sans antialiased selection:bg-accent selection:text-white min-h-screen bg-mesh flex flex-col">
+    <div class="noise-bg"></div>
+
+    <!-- Header -->
+    <header class="py-6 px-4 md:px-8 border-b border-white/5 relative z-10 flex justify-between items-center">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <span class="text-white font-bold font-display leading-none">T</span>
+            </div>
+            <span class="font-display font-bold text-xl text-white">TextileHub</span>
+        </a>
+        <a href="index.html" class="text-sm font-medium text-textMuted hover:text-white transition-colors flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Retour
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex items-center justify-center py-12 px-4 relative z-10"
+          x-data="formHandler()">
+        
+        <div class="w-full max-w-3xl glass-panel rounded-2xl p-6 md:p-10">
+            
+            <!-- Header section of the form -->
+            <div class="mb-8 text-center" x-show="step < 4">
+                <h1 class="text-2xl md:text-3xl font-display font-bold text-white mb-3">Rejoindre le Programme Fondateur</h1>
+                <p class="text-textMuted text-sm md:text-base">Aidez-nous à construire l'outil parfait pour votre atelier. Places limitées.</p>
+                
+                <!-- Progress Bar -->
+                <div class="mt-8 flex items-center justify-between relative">
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-white/5 rounded-full -z-10"></div>
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-accent rounded-full -z-10 transition-all duration-500 ease-in-out" :style="'width: ' + ((step - 1) / 2 * 100) + '%'"></div>
+                    
+                    <template x-for="i in 3">
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300"
+                                 :class="step >= i ? 'bg-accent text-white shadow-[0_0_15px_rgba(139,92,246,0.5)]' : 'bg-surface border border-white/10 text-textMuted'">
+                                <span x-text="i"></span>
+                            </div>
+                            <span class="text-xs font-medium" :class="step >= i ? 'text-accentGlow' : 'text-textMuted'"
+                                  x-text="i === 1 ? 'Contact' : (i === 2 ? 'Atelier' : 'Motivations')"></span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form @submit.prevent="submitForm" x-show="step < 4">
+                
+                <!-- STEP 1 : Informations personnelles -->
+                <div x-show="step === 1" x-transition.opacity.duration.300ms class="space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Prénom *</label>
+                            <input type="text" x-model="formData.prenom" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Koffi">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Nom *</label>
+                            <input type="text" x-model="formData.nom" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Mensah">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Email professionnel *</label>
+                        <input type="email" x-model="formData.email" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="contact@mon-atelier.com">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Téléphone (WhatsApp) *</label>
+                            <input type="tel" x-model="formData.telephone" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="+229 01 23 45 67 89">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1.5">Pays *</label>
+                                <input type="text" x-model="formData.pays" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Bénin">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1.5">Ville *</label>
+                                <input type="text" x-model="formData.ville" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Cotonou">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2 : Atelier -->
+                <div x-show="step === 2" x-transition.opacity.duration.300ms x-cloak class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Nom de l'atelier / entreprise *</label>
+                        <input type="text" x-model="formData.nom_atelier" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: CréaTextile Afrique">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Type d'activité principal *</label>
+                        <select x-model="formData.type_activite" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                            <option value="" disabled selected>Sélectionnez une option</option>
+                            <option value="Flocage / Flex">Flocage / Flex</option>
+                            <option value="Broderie">Broderie</option>
+                            <option value="Sérigraphie">Sérigraphie</option>
+                            <option value="Impression DTF / DTG">Impression DTF / DTG</option>
+                            <option value="Sublimation">Sublimation</option>
+                            <option value="Confection sur mesure">Confection sur mesure</option>
+                            <option value="Mixte / Autre">Mixte / Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Volume de commandes estimé *</label>
+                            <select x-model="formData.volume_commandes" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                                <option value="" disabled selected>Par mois</option>
+                                <option value="Moins de 20">Moins de 20 commandes</option>
+                                <option value="20 à 50">20 à 50 commandes</option>
+                                <option value="50 à 200">50 à 200 commandes</option>
+                                <option value="Plus de 200">Plus de 200 commandes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Taille de l'équipe *</label>
+                            <select x-model="formData.nombre_employes" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                                <option value="" disabled selected>Nombre de personnes</option>
+                                <option value="1">1 (Indépendant)</option>
+                                <option value="2-3">2 à 3 personnes</option>
+                                <option value="4-10">4 à 10 personnes</option>
+                                <option value="11+">Plus de 10 personnes</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 : Motivations -->
+                <div x-show="step === 3" x-transition.opacity.duration.300ms x-cloak class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Quel est votre plus grand défi quotidien dans la gestion de l'atelier ? *</label>
+                        <textarea x-model="formData.probleme_principal" required rows="3" class="w-full input-glass rounded-xl px-4 py-3 resize-none" placeholder="Ex: Suivi des paiements, clients qui demandent des aperçus en permanence..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Quelle fonctionnalité de TextileHub vous intéresse le plus ? *</label>
+                        <select x-model="formData.fonctionnalite_cle" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                            <option value="" disabled selected>Sélectionnez une fonctionnalité</option>
+                            <option value="Boutique en ligne & vitrine">Boutique en ligne & vitrine</option>
+                            <option value="Personnalisateur visuel (Mockups 3D/2D)">Personnalisateur visuel interactif</option>
+                            <option value="Gestion de production (Kanban)">Suivi de production (Statuts)</option>
+                            <option value="Facturation & devis">Devis et facturation auto</option>
+                            <option value="Tout centraliser">Un peu de tout / Centralisation</option>
+                        </select>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-white/10">
+                        <label class="flex items-start gap-3 cursor-pointer group">
+                            <div class="relative flex items-center justify-center mt-1">
+                                <input type="checkbox" x-model="formData.consentement_rgpd" required class="peer sr-only">
+                                <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                    <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                            </div>
+                            <span class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                                J'accepte que mes données soient traitées dans le cadre de ma candidature au programme fondateur TextileHub. *
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="mt-10 flex justify-between items-center pt-6 border-t border-white/10">
+                    <button type="button" 
+                            x-show="step > 1" 
+                            @click="step--"
+                            class="btn-secondary px-6 py-2.5 rounded-full font-medium text-sm flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        Précédent
+                    </button>
+                    
+                    <div x-show="step === 1" class="w-full"></div> <!-- Spacer for flex alignment -->
+
+                    <button type="button" 
+                            x-show="step < 3" 
+                            @click="validateStep() && step++"
+                            class="btn-primary px-8 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 ml-auto">
+                        Suivant
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+
+                    <button type="submit" 
+                            x-show="step === 3" 
+                            :disabled="isSubmitting || !formData.consentement_rgpd"
+                            class="btn-primary px-8 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 shadow-glow">
+                        <span x-show="!isSubmitting">Soumettre ma candidature</span>
+                        <span x-show="isSubmitting">Envoi en cours...</span>
+                        <svg x-show="!isSubmitting" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg x-show="isSubmitting" class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    </button>
+                </div>
+                
+                <!-- Error Message -->
+                <div x-show="errorMessage" x-text="errorMessage" class="mt-4 p-3 rounded-lg bg-error/10 border border-error/20 text-error text-sm text-center" x-cloak></div>
+
+            </form>
+
+            <!-- STEP 4 : Success -->
+            <div x-show="step === 4" x-cloak class="text-center py-10" x-transition.opacity.duration.500ms>
+                <div class="w-20 h-20 mx-auto rounded-full bg-success/20 flex items-center justify-center mb-6">
+                    <div class="w-14 h-14 rounded-full bg-success flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)]">
+                        <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                </div>
+                <h2 class="text-3xl font-display font-bold text-white mb-4">Candidature reçue !</h2>
+                <p class="text-textMuted text-lg max-w-md mx-auto mb-8">
+                    Merci pour votre intérêt. Notre équipe étudiera votre profil et vous contactera très prochainement.
+                </p>
+                <a href="index.html" class="inline-block btn-secondary px-8 py-3 rounded-full font-medium transition-colors">
+                    Retour à l'accueil
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function formHandler() {
+            return {
+                step: 1,
+                isSubmitting: false,
+                errorMessage: '',
+                formData: {
+                    prenom: '',
+                    nom: '',
+                    email: '',
+                    telephone: '',
+                    pays: 'Bénin',
+                    ville: '',
+                    nom_atelier: '',
+                    type_activite: '',
+                    nombre_employes: '',
+                    volume_commandes: '',
+                    probleme_principal: '',
+                    fonctionnalite_cle: '',
+                    consentement_rgpd: false,
+                    source: 'landing_page'
+                },
+                
+                validateStep() {
+                    this.errorMessage = '';
+                    if (this.step === 1) {
+                        if (!this.formData.prenom || !this.formData.nom || !this.formData.email || !this.formData.telephone || !this.formData.pays || !this.formData.ville) {
+                            this.errorMessage = 'Veuillez remplir tous les champs obligatoires à cette étape.';
+                            return false;
+                        }
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(this.formData.email)) {
+                            this.errorMessage = 'Veuillez entrer une adresse email valide.';
+                            return false;
+                        }
+                    } else if (this.step === 2) {
+                        if (!this.formData.nom_atelier || !this.formData.type_activite || !this.formData.volume_commandes || !this.formData.nombre_employes) {
+                            this.errorMessage = 'Veuillez remplir tous les champs obligatoires à cette étape.';
+                            return false;
+                        }
+                    } else if (this.step === 3) {
+                        if (!this.formData.probleme_principal || !this.formData.fonctionnalite_cle || !this.formData.consentement_rgpd) {
+                            this.errorMessage = 'Veuillez remplir tous les champs et accepter les conditions.';
+                            return false;
+                        }
+                    }
+                    return true;
+                },
+
+                async submitForm() {
+                    this.errorMessage = '';
+                    this.isSubmitting = true;
+                    
+                    try {
+                        const response = await fetch('http://localhost:3000/api/candidatures', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                ...this.formData,
+                                consentement_rgpd: this.formData.consentement_rgpd ? 1 : 0
+                            })
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (response.ok) {
+                            this.step = 4; // Show success screen
+                        } else {
+                            this.errorMessage = data.message || 'Une erreur est survenue lors de l\'envoi.';
+                        }
+                    } catch (error) {
+                        this.errorMessage = 'Erreur de connexion au serveur. Veuillez réessayer plus tard.';
+                    } finally {
+                        this.isSubmitting = false;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
