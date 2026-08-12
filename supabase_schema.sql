@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS candidatures_fondateurs (
     nom_atelier         VARCHAR(200)    NOT NULL,
     type_activite       VARCHAR(100)    DEFAULT NULL,
     annee_creation      SMALLINT        DEFAULT NULL,
-    nombre_employes     SMALLINT        DEFAULT 1,
+    nombre_employes     VARCHAR(50)     DEFAULT '1',
     volume_commandes    VARCHAR(50)     DEFAULT NULL,
     canal_commandes     TEXT,
     description_atelier TEXT,
