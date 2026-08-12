@@ -148,8 +148,12 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
     }
 });
 
-// Démarrage du serveur
-app.listen(PORT, () => {
-    console.log(`Serveur démarré sur le port ${PORT}`);
-    console.log(`Test API: http://localhost:${PORT}/api/health`);
-});
+// Démarrage du serveur (en local) ou Export (pour Vercel)
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    app.listen(PORT, () => {
+        console.log(`Serveur démarré sur le port ${PORT}`);
+        console.log(`Test API: http://localhost:${PORT}/api/health`);
+    });
+}
+
+module.exports = app;
