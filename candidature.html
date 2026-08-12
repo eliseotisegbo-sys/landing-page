@@ -430,7 +430,8 @@
                             this.errorMessage = data.message || 'Une erreur est survenue lors de l\'envoi.';
                         }
                     } catch (error) {
-                        this.errorMessage = 'Erreur de connexion au serveur. Veuillez réessayer plus tard.';
+                        console.error('Erreur Fetch:', error);
+                        this.errorMessage = `Erreur de connexion (${error.message}). Veuillez réessayer.`;
                     } finally {
                         this.isSubmitting = false;
                     }
