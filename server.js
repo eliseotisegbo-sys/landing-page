@@ -140,11 +140,10 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
         console.error('Erreur lors de l\'enregistrement de la candidature:', error);
 
         // Gestion des erreurs de duplicata (email) - PostgreSQL
-        if (error.code === '23505') {
-            return res.status(409).json({ success: false, message: 'Une candidature existe déjà avec cette adresse email.' });
+        if (error.code === '23505') { // PostgreSQL unique violation
+            return res.status(409).json({ success: false, message: 'Cette adresse email est déjà utilisée.' });
         }
-
-        res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        res.status(500).json({ success: false, message: 'Erreur interne du serveur.', details: error.message, code: error.code });
     }
 });
 
