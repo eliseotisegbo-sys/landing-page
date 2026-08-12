@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
 const cors = require('cors');
@@ -9,27 +10,36 @@ const emailValidator = require('email-validator');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// ===============================
+// CORS
+// ===============================
+
 const corsOptions = {
-    origin: process.env.FRONTEND_URL || '*', // Remplacer '*' par votre domaine en production (ex: 'https://textilehub.com')
+    origin: process.env.FRONTEND_URL || '*',
     optionsSuccessStatus: 200
 };
+
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use(express.static(__dirname)); // Serve static files (HTML, CSS, JS)
+app.use(express.static(__dirname));
 
-// Configuration de la connexion à la base de données
-const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+// ===============================
+// SUPABASE
+// ===============================
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseKey) {
-    console.error('Erreur: SUPABASE_URL ou SUPABASE_KEY manquant dans le fichier .env');
+    console.error(
+        'Erreur : SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY manquant.'
+    );
     process.exit(1);
 }
 
 const supabase = createClient(supabaseUrl, supabaseKey);
-console.log('Client Supabase configuré.');
 
+console.log('Client Supabase serveur configuré.');
 // Routes
 // Test route
 app.get('/api/health', (req, res) => {
@@ -78,9 +88,9 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
         // libphonenumber-js tente d'analyser le numéro. Si pas de + on assume le code pays sélectionné (BJ pour Bénin, etc.)
         // Une simple association des noms de pays fréquents avec leur code ISO
         const paysIso = pays.toLowerCase().includes('bénin') || pays.toLowerCase().includes('benin') ? 'BJ' :
-                        pays.toLowerCase().includes('togo') ? 'TG' :
-                        pays.toLowerCase().includes('côte d') || pays.toLowerCase().includes('cote d') ? 'CI' :
-                        pays.toLowerCase().includes('sénégal') || pays.toLowerCase().includes('senegal') ? 'SN' : undefined;
+            pays.toLowerCase().includes('togo') ? 'TG' :
+                pays.toLowerCase().includes('côte d') || pays.toLowerCase().includes('cote d') ? 'CI' :
+                    pays.toLowerCase().includes('sénégal') || pays.toLowerCase().includes('senegal') ? 'SN' : undefined;
 
         const phoneNumber = parsePhoneNumberFromString(telephone, paysIso);
         if (!phoneNumber || !phoneNumber.isValid()) {
@@ -96,30 +106,30 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
             .from('candidatures_fondateurs')
             .insert([
                 {
-                    prenom, 
-                    nom, 
-                    email: lowerEmail, 
-                    telephone: formattedPhone, 
-                    pays: pays || 'Bénin', 
+                    prenom,
+                    nom,
+                    email: lowerEmail,
+                    telephone: formattedPhone,
+                    pays: pays || 'Bénin',
                     ville,
-                    nom_atelier, 
-                    type_activite, 
-                    annee_creation: annee_creation || null, 
+                    nom_atelier,
+                    type_activite,
+                    annee_creation: annee_creation || null,
                     nombre_employes: nombre_employes || 1,
-                    volume_commandes, 
-                    canal_commandes: canal_commandes || null, 
+                    volume_commandes,
+                    canal_commandes: canal_commandes || null,
                     description_atelier: description_atelier || null,
-                    probleme_principal, 
-                    objectif_plateforme: objectif_plateforme || null, 
+                    probleme_principal,
+                    objectif_plateforme: objectif_plateforme || null,
                     fonctionnalite_cle,
-                    source: source || 'landing_page', 
-                    utm_source: utm_source || null, 
-                    utm_medium: utm_medium || null, 
-                    utm_campaign: utm_campaign || null, 
+                    source: source || 'landing_page',
+                    utm_source: utm_source || null,
+                    utm_medium: utm_medium || null,
+                    utm_campaign: utm_campaign || null,
                     referrer_url: referrer_url || null,
-                    consentement_rgpd: consentement_rgpd === 1 || consentement_rgpd === true, 
-                    accepte_newsletter: accepte_newsletter === 1 || accepte_newsletter === true, 
-                    ip_address: ip_address || null, 
+                    consentement_rgpd: consentement_rgpd === 1 || consentement_rgpd === true,
+                    accepte_newsletter: accepte_newsletter === 1 || accepte_newsletter === true,
+                    ip_address: ip_address || null,
                     user_agent: user_agent || null,
                     statut: 'nouveau'
                 }
