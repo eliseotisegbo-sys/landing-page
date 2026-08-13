@@ -7,6 +7,10 @@
     
     <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/supabase-config.js"></script>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -409,25 +413,28 @@
                 async submitForm() {
                     this.errorMessage = '';
                     this.isSubmitting = true;
-                    
+
                     try {
-                        const response = await fetch('/api/candidatures', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
+                        const params = new URLSearchParams(window.location.search);
+                        const { error } = await window.supabaseClient
+                            .from('candidatures_fondateurs')
+                            .insert({
                                 ...this.formData,
-                                consentement_rgpd: this.formData.consentement_rgpd ? 1 : 0
-                            })
-                        });
-                        
-                        const data = await response.json();
-                        
-                        if (response.ok) {
+                                nombre_employes: parseInt(this.formData.nombre_employes, 10) || 1,
+                                consentement_rgpd: this.formData.consentement_rgpd ? 1 : 0,
+                                utm_source: params.get('utm_source'),
+                                utm_medium: params.get('utm_medium'),
+                                utm_campaign: params.get('utm_campaign'),
+                                referrer_url: document.referrer || null,
+                                user_agent: navigator.userAgent
+                            });
+
+                        if (!error) {
                             this.step = 4; // Show success screen
+                        } else if (error.code === '23505') {
+                            this.errorMessage = 'Une candidature existe déjà avec cette adresse email.';
                         } else {
-                            this.errorMessage = data.message || 'Une erreur est survenue lors de l\'envoi.';
+                            this.errorMessage = 'Une erreur est survenue lors de l\'envoi.';
                         }
                     } catch (error) {
                         console.error('Erreur Fetch:', error);
