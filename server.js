@@ -30,16 +30,20 @@ app.use(express.static(__dirname));
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-if (!supabaseUrl || !supabaseKey) {
-    console.error(
-        'Erreur : SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY manquant.'
-    );
-    process.exit(1);
+let supabase = null;
+let supabaseConfigured = false;
+
+if (supabaseUrl && supabaseKey) {
+    try {
+        supabase = createClient(supabaseUrl, supabaseKey);
+        supabaseConfigured = true;
+        console.log('Client Supabase serveur configuré.');
+    } catch (error) {
+        console.error('Erreur lors de la configuration du client Supabase:', error);
+    }
+} else {
+    console.warn('AVERTISSEMENT: SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY manquant. L\'API fonctionnera en mode dégradé.');
 }
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-console.log('Client Supabase serveur configuré.');
 // Routes
 // Test route
 app.get('/api/health', (req, res) => {
@@ -57,6 +61,14 @@ const apiLimiter = rateLimit({
 
 // Soumission de candidature
 app.post('/api/candidatures', apiLimiter, async (req, res) => {
+    // Vérifier si Supabase est configuré
+    if (!supabaseConfigured || !supabase) {
+        return res.status(503).json({
+            success: false,
+            message: 'Service de base de données temporairement indisponible. Veuillez réessayer plus tard.'
+        });
+    }
+
     try {
         const {
             prenom, nom, email, telephone, pays, ville,
@@ -102,7 +114,7 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
         const ip_address = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
         const user_agent = req.headers['user-agent'];
 
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('candidatures_fondateurs')
             .insert([
                 {
@@ -133,8 +145,7 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
                     user_agent: user_agent || null,
                     statut: 'nouveau'
                 }
-            ])
-            .select();
+            ]);
 
         if (error) {
             throw error;
@@ -142,8 +153,7 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
 
         res.status(201).json({
             success: true,
-            message: 'Candidature enregistrée avec succès.',
-            candidatureId: data[0].id
+            message: 'Candidature enregistrée avec succès.'
         });
 
     } catch (error) {
@@ -160,7 +170,14 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
             return res.status(500).json({ success: false, message: 'Erreur de configuration de la base de données.' });
         }
 
-        res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        // Gestion des erreurs de connexion Supabase
+        if (error.message && error.message.includes('fetch failed')) {
+            console.error('Erreur de connexion à Supabase');
+            return res.status(503).json({ success: false, message: 'Service de base de données temporairement indisponible.' });
+        }
+
+        // Erreur générique
+        return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
     }
 });
 
