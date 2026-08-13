@@ -409,7 +409,7 @@
                 async submitForm() {
                     this.errorMessage = '';
                     this.isSubmitting = true;
-                    
+
                     try {
                         const response = await fetch('/api/candidatures', {
                             method: 'POST',
@@ -421,9 +421,18 @@
                                 consentement_rgpd: this.formData.consentement_rgpd ? 1 : 0
                             })
                         });
-                        
-                        const data = await response.json();
-                        
+
+                        const contentType = response.headers.get('content-type') || '';
+                        let data;
+
+                        if (contentType.includes('application/json')) {
+                            data = await response.json();
+                        } else {
+                            const text = await response.text();
+                            console.error('Réponse non JSON du serveur:', text);
+                            throw new Error(`Le serveur a retourné une réponse non JSON (${response.status}).`);
+                        }
+
                         if (response.ok) {
                             this.step = 4; // Show success screen
                         } else {
@@ -431,7 +440,11 @@
                         }
                     } catch (error) {
                         console.error('Erreur Fetch:', error);
-                        this.errorMessage = `Erreur de connexion (${error.message}). Veuillez réessayer.`;
+                        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                            this.errorMessage = 'Impossible de contacter le serveur. Vérifiez votre connexion et réessayez.';
+                        } else {
+                            this.errorMessage = `Erreur de connexion (${error.message}). Veuillez réessayer.`;
+                        }
                     } finally {
                         this.isSubmitting = false;
                     }

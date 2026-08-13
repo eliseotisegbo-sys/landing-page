@@ -153,7 +153,14 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
         if (error.code === '23505') { // PostgreSQL unique violation
             return res.status(409).json({ success: false, message: 'Cette adresse email est déjà utilisée.' });
         }
-        res.status(500).json({ success: false, message: 'Erreur interne du serveur.', details: error.message, code: error.code });
+
+        // Gestion des erreurs RLS Supabase
+        if (error.code === '42501') {
+            console.error('Erreur RLS Supabase - Vérifier la clé SERVICE_ROLE_KEY');
+            return res.status(500).json({ success: false, message: 'Erreur de configuration de la base de données.' });
+        }
+
+        res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
     }
 });
 
