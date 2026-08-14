@@ -4,20 +4,20 @@ Ce guide explique comment configurer correctement le projet TextileHub sur Verce
 
 ## Architecture du projet
 
-Le projet utilise une architecture Vercel moderne avec :
+Le projet utilise une architecture Vercel serverless native :
 - **Frontend** : Fichiers HTML statiques (index.html, candidature.html, etc.)
-- **Backend** : Serveur Express dans `server.js`
-- **API** : Fonction serverless dans `api/index.js` qui exporte l'application Express
+- **API** : Fonction serverless Express dans `api/index.js`
 - **Configuration** : `vercel.json` avec rewrites pour router les requêtes API
+
+Vercel détecte automatiquement le dossier `api/` et traite chaque fichier comme une fonction serverless.
 
 ## Structure des fichiers
 
 ```
 textilehub-landing/
-├── server.js              # Application Express principale
 ├── api/
-│   └── index.js          # Point d'entrée pour Vercel (exporte server.js)
-├── vercel.json           # Configuration Vercel
+│   └── index.js          # Fonction serverless Express complète
+├── vercel.json           # Configuration Vercel (rewrites)
 ├── candidature.html      # Formulaire de candidature
 ├── index.html            # Landing page
 └── .env.example          # Exemple de variables d'environnement
@@ -77,6 +77,8 @@ Après redéploiement, testez :
    - Remplissez et soumettez le formulaire
    - Vérifiez que vous recevez le message de succès
 
+**Note** : En production, les URLs sont `/api/health` et `/api/candidatures` grâce au rewrite dans vercel.json.
+
 ## Résolution des problèmes courants
 
 ### Erreur 405 Method Not Allowed
@@ -113,8 +115,8 @@ Pour tester en local :
 1. Copiez `.env.example` vers `.env`
 2. Remplissez les variables Supabase dans `.env`
 3. Installez les dépendances : `npm install`
-4. Démarrez le serveur : `node server.js`
-5. Testez : `http://localhost:3000/api/health`
+4. Démarrez la fonction API : `node api/index.js`
+5. Testez : `http://localhost:3000/health` (notez le chemin relatif sans /api)
 
 ## Support
 

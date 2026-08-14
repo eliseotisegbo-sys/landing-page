@@ -28,7 +28,7 @@ app.use(express.static(__dirname));
 // ===============================
 
 const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 let supabase = null;
 let supabaseConfigured = false;
@@ -42,7 +42,7 @@ if (supabaseUrl && supabaseKey) {
         console.error('Erreur lors de la configuration du client Supabase:', error);
     }
 } else {
-    console.warn('AVERTISSEMENT: SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY manquant. L\'API fonctionnera en mode dégradé.');
+    console.warn('AVERTISSEMENT: Clés Supabase manquantes. L\'API fonctionnera en mode dégradé.');
 }
 // Routes
 // Test route
@@ -166,7 +166,7 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
 
         // Gestion des erreurs RLS Supabase
         if (error.code === '42501') {
-            console.error('Erreur RLS Supabase - Vérifier la clé SERVICE_ROLE_KEY');
+            console.error('Erreur RLS Supabase - Vérifier la clé API ou les permissions RLS');
             return res.status(500).json({ success: false, message: 'Erreur de configuration de la base de données.' });
         }
 
