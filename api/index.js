@@ -36,7 +36,7 @@ if (supabaseUrl && supabaseKey) {
 }
 
 // Health check
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'API TextileHub fonctionnelle.' });
 });
 
@@ -50,7 +50,7 @@ const apiLimiter = rateLimit({
 });
 
 // Candidatures endpoint
-app.post('/candidatures', apiLimiter, async (req, res) => {
+app.post('/api/candidatures', apiLimiter, async (req, res) => {
     if (!supabaseConfigured || !supabase) {
         return res.status(503).json({
             success: false,
