@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const { createClient } = require('@supabase/supabase-js');
 const cors = require('cors');
@@ -156,7 +157,11 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
             return res.status(503).json({ success: false, message: 'Service de base de données temporairement indisponible.' });
         }
 
-        return res.status(500).json({ success: false, message: 'Erreur interne du serveur.' });
+        return res.status(500).json({ 
+            success: false, 
+            message: 'Erreur interne du serveur: ' + (error.message || 'Erreur inconnue'),
+            details: error.details || error.hint || error.toString()
+        });
     }
 });
 
