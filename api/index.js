@@ -51,7 +51,7 @@ const apiLimiter = rateLimit({
     legacyHeaders: false,
 });
 
-// Candidatures endpoint
+// Candidatures endpoint — Programme Atelier Fondateur (Questionnaire 5 étapes)
 app.post('/api/candidatures', apiLimiter, async (req, res) => {
     if (!supabaseConfigured || !supabase) {
         return res.status(503).json({
@@ -61,71 +61,89 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
     }
 
     try {
-        const {
-            prenom, nom, email, telephone, pays, ville,
-            nom_atelier, type_activite, annee_creation, nombre_employes,
-            volume_commandes, canal_commandes, description_atelier,
-            probleme_principal, objectif_plateforme, fonctionnalite_cle,
-            source, utm_source, utm_medium, utm_campaign, referrer_url,
-            consentement_rgpd, accepte_newsletter
-        } = req.body;
+        const data = req.body;
 
-        if (!prenom || !nom || !email || !telephone || !pays || !ville ||
-            !nom_atelier || !type_activite || !volume_commandes || !nombre_employes ||
-            !probleme_principal || !fonctionnalite_cle || (consentement_rgpd !== 1 && consentement_rgpd !== true)) {
-            return res.status(400).json({ success: false, message: 'Champs obligatoires manquants ou consentement non accordé.' });
+        // ── Validation des champs obligatoires (Step 1 + Step 5) ──
+        if (!data.profil) {
+            return res.status(400).json({ success: false, message: 'Le champ profil est obligatoire.' });
+        }
+        if (!data.nom_prenom || !data.email || !data.telephone || !data.ville || !data.pays || !data.fonctionnalite_reve) {
+            return res.status(400).json({ success: false, message: 'Veuillez remplir tous les champs de contact obligatoires.' });
         }
 
-        if (!emailValidator.validate(email)) {
+        // ── Validation email ──
+        if (!emailValidator.validate(data.email)) {
             return res.status(400).json({ success: false, message: 'Veuillez fournir une adresse email valide.' });
         }
 
-        const lowerEmail = email.toLowerCase();
-        if (lowerEmail.endsWith('@gmai.com') || lowerEmail.endsWith('@gmail.con') || lowerEmail.endsWith('@gamil.com') || lowerEmail.endsWith('@gmail.fr')) {
+        const lowerEmail = data.email.toLowerCase().trim();
+        const emailTypos = ['@gmai.com', '@gmail.con', '@gamil.com', '@gmail.fr'];
+        if (emailTypos.some(typo => lowerEmail.endsWith(typo))) {
             return res.status(400).json({ success: false, message: 'Vérifiez votre adresse email. Voulez-vous dire @gmail.com ?' });
         }
 
-        const paysIso = pays.toLowerCase().includes('bénin') || pays.toLowerCase().includes('benin') ? 'BJ' :
-            pays.toLowerCase().includes('togo') ? 'TG' :
-                pays.toLowerCase().includes('côte d') || pays.toLowerCase().includes('cote d') ? 'CI' :
-                    pays.toLowerCase().includes('sénégal') || pays.toLowerCase().includes('senegal') ? 'SN' : undefined;
+        // ── Validation téléphone ──
+        const paysStr = (data.pays || '').toLowerCase();
+        const paysIso = paysStr.includes('bénin') || paysStr.includes('benin') ? 'BJ' :
+            paysStr.includes('togo') ? 'TG' :
+            paysStr.includes('côte d') || paysStr.includes('cote d') ? 'CI' :
+            paysStr.includes('sénégal') || paysStr.includes('senegal') ? 'SN' : undefined;
 
-        const phoneNumber = parsePhoneNumberFromString(telephone, paysIso);
+        const phoneNumber = parsePhoneNumberFromString(data.telephone, paysIso);
         if (!phoneNumber || !phoneNumber.isValid()) {
             return res.status(400).json({ success: false, message: 'Veuillez fournir un numéro de téléphone valide.' });
         }
-        const formattedPhone = phoneNumber.number;
 
         const ip_address = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
         const user_agent = req.headers['user-agent'];
 
+        // ── Déterminer le type de profil ──
+        const isPro = ['atelier', 'employe'].includes(data.profil);
+
+        // ── Insertion dans Supabase ──
         const { error } = await supabase
-            .from('candidatures_fondateurs')
+            .from('reponses_questionnaire')
             .insert([
                 {
-                    prenom,
-                    nom,
+                    // Identité & Contact
+                    profil: data.profil,
+                    nom_prenom: data.nom_prenom.trim(),
+                    nom_atelier: data.nom_atelier ? data.nom_atelier.trim() : null,
                     email: lowerEmail,
-                    telephone: formattedPhone,
-                    pays: pays || 'Bénin',
-                    ville,
-                    nom_atelier,
-                    type_activite,
-                    annee_creation: annee_creation || null,
-                    nombre_employes: nombre_employes || 1,
-                    volume_commandes,
-                    canal_commandes: canal_commandes || null,
-                    description_atelier: description_atelier || null,
-                    probleme_principal,
-                    objectif_plateforme: objectif_plateforme || null,
-                    fonctionnalite_cle,
-                    source: source || 'landing_page',
-                    utm_source: utm_source || null,
-                    utm_medium: utm_medium || null,
-                    utm_campaign: utm_campaign || null,
-                    referrer_url: referrer_url || null,
-                    consentement_rgpd: consentement_rgpd === 1 || consentement_rgpd === true,
-                    accepte_newsletter: accepte_newsletter === 1 || accepte_newsletter === true,
+                    telephone: phoneNumber.number,
+                    ville: data.ville.trim(),
+                    pays: data.pays.trim() || 'Bénin',
+                    is_pro: isPro,
+
+                    // Step 2 — Qualification & Activité (pros uniquement)
+                    types_activite: data.types_activite || [],
+                    anciennete: data.anciennete || null,
+                    taille_equipe: data.taille_equipe || null,
+                    volume_commandes: data.volume_commandes || null,
+                    reception_commandes: data.reception_commandes || [],
+                    outils_suivi: data.outils_suivi || [],
+                    problemes_actuels: data.problemes_actuels || [],
+                    frequence_erreurs_com: data.frequence_erreurs_com || null,
+                    supprimer_difficulte: data.supprimer_difficulte || null,
+                    moyens_paiement: data.moyens_paiement || [],
+
+                    // Step 3 — Besoins de l'Atelier (pros uniquement)
+                    fonctionnalites_urgentes: data.fonctionnalites_urgentes || [],
+                    attente_textilehub: data.attente_textilehub || null,
+                    pret_a_tester: data.pret_a_tester || null,
+
+                    // Step 4 — Parcours Client (clients/designers)
+                    deja_commande: data.deja_commande || null,
+                    mode_commande: data.mode_commande || [],
+                    frustrations_client: data.frustrations_client || [],
+                    importance_apercu: data.importance_apercu || null,
+                    amelioration_souhaitee: data.amelioration_souhaitee || null,
+
+                    // Step 5 — Question finale
+                    fonctionnalite_reve: data.fonctionnalite_reve,
+
+                    // Métadonnées
+                    source: 'landing_page',
                     ip_address: ip_address || null,
                     user_agent: user_agent || null,
                     statut: 'nouveau'
@@ -138,18 +156,18 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
 
         res.status(201).json({
             success: true,
-            message: 'Candidature enregistrée avec succès.'
+            message: 'Merci ! Vos réponses ont été enregistrées avec succès.'
         });
 
     } catch (error) {
-        console.error('Erreur lors de l\'enregistrement de la candidature:', error);
+        console.error('Erreur lors de l\'enregistrement:', error);
 
         if (error.code === '23505') {
-            return res.status(409).json({ success: false, message: 'Cette adresse email est déjà utilisée.' });
+            return res.status(409).json({ success: false, message: 'Cette adresse email a déjà été utilisée pour répondre au questionnaire.' });
         }
 
         if (error.code === '42501') {
-            console.error('Erreur RLS Supabase - Vérifier la clé API ou les permissions RLS');
+            console.error('Erreur RLS Supabase — Vérifier la clé API ou les permissions RLS');
             return res.status(500).json({ success: false, message: 'Erreur de configuration de la base de données.' });
         }
 

@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (CDN for demo) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -43,17 +43,11 @@
     </script>
 
     <style>
-        /* Film Grain Overlay */
         .noise-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.035;
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9999; opacity: 0.035;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-
-        /* Glassmorphism Classes */
         .glass-panel {
             background: rgba(17, 24, 39, 0.6);
             backdrop-filter: blur(16px);
@@ -61,8 +55,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
-
-        /* Forms */
         .input-glass {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -75,78 +67,44 @@
             outline: none;
             box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
         }
-        .input-glass::placeholder {
-            color: #6B7280;
-        }
-        
-        /* Fix for select options contrast */
-        select.input-glass option {
-            background-color: #111827; /* Dark surface color */
-            color: #F3F4F6;
-        }
+        .input-glass::placeholder { color: #6B7280; }
+        select.input-glass option { background-color: #111827; color: #F3F4F6; }
 
-        /* Buttons */
         .btn-primary {
             background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-            color: white;
-            transition: all 0.3s ease;
+            color: white; transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
         }
         .btn-primary:hover {
-            box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5); transform: translateY(-1px);
         }
-        .btn-primary:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #E5E7EB;
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #E5E7EB; transition: all 0.3s ease;
         }
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-        }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
 
-        /* Background Mesh Gradient */
         .bg-mesh {
             background: radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
                         radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0B0F19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
 
-        /* Transitions */
         [x-cloak] { display: none !important; }
     </style>
 </head>
 <body class="bg-background text-textMain font-sans antialiased selection:bg-accent selection:text-white min-h-screen bg-mesh flex flex-col">
     <div class="noise-bg"></div>
 
-    <!-- Header -->
     <header class="py-6 px-4 md:px-8 border-b border-white/5 relative z-10 flex justify-between items-center">
         <a href="index.html" class="flex items-center gap-3 group">
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <span class="text-white font-bold font-display leading-none">T</span>
-            </div>
+            <img src="/assets/logo textileHub.png" alt="TextileHub Logo" class="w-9 h-9 object-contain group-hover:scale-110 transition-transform duration-300">
             <span class="font-display font-bold text-xl text-white">TextileHub</span>
         </a>
         <a href="index.html" class="text-sm font-medium text-textMuted hover:text-white transition-colors flex items-center gap-2">
@@ -155,150 +113,360 @@
         </a>
     </header>
 
-    <!-- Main Content -->
-    <main class="flex-grow flex items-center justify-center py-12 px-4 relative z-10"
-          x-data="formHandler()">
+    <main class="flex-grow flex items-center justify-center py-12 px-4 relative z-10" x-data="formHandler()">
         
         <div class="w-full max-w-3xl glass-panel rounded-2xl p-6 md:p-10">
             
-            <!-- Header section of the form -->
-            <div class="mb-8 text-center" x-show="step < 4">
-                <h1 class="text-2xl md:text-3xl font-display font-bold text-white mb-3">Rejoindre le Programme Fondateur</h1>
-                <p class="text-textMuted text-sm md:text-base">Aidez-nous à construire l'outil parfait pour votre atelier. Places limitées.</p>
+            <div class="mb-8 text-center" x-show="step < 6">
+                <h1 class="text-2xl md:text-3xl font-display font-bold text-white mb-3">Programme Atelier Fondateur TextileHub</h1>
+                <p class="text-textMuted text-sm md:text-base">Ce questionnaire prend 3 à 5 minutes pour nous aider à comprendre vos besoins.</p>
                 
                 <!-- Progress Bar -->
-                <div class="mt-8 flex items-center justify-between relative">
-                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-white/5 rounded-full -z-10"></div>
-                    <div class="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-accent rounded-full -z-10 transition-all duration-500 ease-in-out" :style="'width: ' + ((step - 1) / 2 * 100) + '%'"></div>
-                    
-                    <template x-for="i in 3">
-                        <div class="flex flex-col items-center gap-2">
-                            <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors duration-300"
-                                 :class="step >= i ? 'bg-accent text-white shadow-[0_0_15px_rgba(139,92,246,0.5)]' : 'bg-surface border border-white/10 text-textMuted'">
-                                <span x-text="i"></span>
-                            </div>
-                            <span class="text-xs font-medium" :class="step >= i ? 'text-accentGlow' : 'text-textMuted'"
-                                  x-text="i === 1 ? 'Contact' : (i === 2 ? 'Atelier' : 'Motivations')"></span>
-                        </div>
-                    </template>
+                <div class="mt-8 relative h-1.5 bg-white/5 rounded-full overflow-hidden">
+                    <div class="absolute left-0 top-0 h-full bg-accent transition-all duration-500 ease-in-out" 
+                         :style="'width: ' + getProgress() + '%'"></div>
                 </div>
+                <div class="text-xs text-textMuted text-right mt-2 font-medium" x-text="getProgressText()"></div>
             </div>
 
-            <!-- Form -->
-            <form @submit.prevent="submitForm" x-show="step < 4">
+            <form @submit.prevent="submitForm" x-show="step < 6">
                 
-                <!-- STEP 1 : Informations personnelles -->
-                <div x-show="step === 1" x-transition.opacity.duration.300ms class="space-y-5">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Prénom *</label>
-                            <input type="text" x-model="formData.prenom" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Koffi">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Nom *</label>
-                            <input type="text" x-model="formData.nom" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Mensah">
-                        </div>
-                    </div>
-                    
+                <!-- STEP 1 : Profil -->
+                <div x-show="step === 1" x-transition.opacity.duration.300ms class="space-y-6">
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Email professionnel *</label>
-                        <input type="email" x-model="formData.email" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="contact@mon-atelier.com">
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Téléphone (WhatsApp) *</label>
-                            <input type="tel" x-model="formData.telephone" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="+229 01 23 45 67 89">
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1.5">Pays *</label>
-                                <input type="text" x-model="formData.pays" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Bénin">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-medium text-gray-300 mb-1.5">Ville *</label>
-                                <input type="text" x-model="formData.ville" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Cotonou">
-                            </div>
+                        <label class="block text-lg font-medium text-white mb-4">Quel est votre profil ? *</label>
+                        <div class="grid grid-cols-1 gap-3">
+                            <template x-for="option in [
+                                {val: 'atelier', label: 'Je possède ou dirige un atelier de personnalisation textile'},
+                                {val: 'employe', label: 'Je travaille dans un atelier de personnalisation textile'},
+                                {val: 'client', label: 'Je suis client d\'un atelier / je commande des produits personnalisés'},
+                                {val: 'designer', label: 'Je suis designer / créateur'},
+                                {val: 'entreprise', label: 'Je suis entrepreneur ou entreprise qui commande des produits en gros'},
+                                {val: 'interesse', label: 'Je suis simplement intéressé(e) par le projet'}
+                            ]">
+                                <label class="flex items-center gap-3 p-4 rounded-xl border border-white/10 bg-white/5 cursor-pointer hover:bg-white/10 transition-colors" 
+                                       :class="formData.profil === option.val ? 'border-accent bg-accent/10' : ''">
+                                    <input type="radio" x-model="formData.profil" :value="option.val" class="hidden">
+                                    <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors" 
+                                         :class="formData.profil === option.val ? 'border-accent' : 'border-white/30'">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-accent" x-show="formData.profil === option.val"></div>
+                                    </div>
+                                    <span class="text-gray-200" x-text="option.label"></span>
+                                </label>
+                            </template>
                         </div>
                     </div>
                 </div>
 
-                <!-- STEP 2 : Atelier -->
-                <div x-show="step === 2" x-transition.opacity.duration.300ms x-cloak class="space-y-5">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Nom de l'atelier / entreprise *</label>
-                        <input type="text" x-model="formData.nom_atelier" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: CréaTextile Afrique">
-                    </div>
+                <!-- STEP 2 : Qualification & Activité (Professionnels) -->
+                <div x-show="step === 2" x-transition.opacity.duration.300ms x-cloak class="space-y-6">
+                    <h2 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-2">Votre Activité</h2>
                     
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Type d'activité principal *</label>
-                        <select x-model="formData.type_activite" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
-                            <option value="" disabled selected>Sélectionnez une option</option>
-                            <option value="Flocage / Flex">Flocage / Flex</option>
-                            <option value="Broderie">Broderie</option>
-                            <option value="Sérigraphie">Sérigraphie</option>
-                            <option value="Impression DTF / DTG">Impression DTF / DTG</option>
-                            <option value="Sublimation">Sublimation</option>
-                            <option value="Confection sur mesure">Confection sur mesure</option>
-                            <option value="Mixte / Autre">Mixte / Autre</option>
-                        </select>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Quel type d'activité exercez-vous ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <template x-for="act in ['Flocage', 'DTF', 'Broderie', 'Sérigraphie', 'Impression numérique', 'Sublimation', 'Tricotterie', 'Rien', 'Autre']">
+                                <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center">
+                                        <input type="checkbox" x-model="formData.types_activite" :value="act" class="peer sr-only">
+                                        <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300" x-text="act"></span>
+                                </label>
+                            </template>
+                        </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Volume de commandes estimé *</label>
-                            <select x-model="formData.volume_commandes" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
-                                <option value="" disabled selected>Par mois</option>
-                                <option value="Moins de 20">Moins de 20 commandes</option>
-                                <option value="20 à 50">20 à 50 commandes</option>
-                                <option value="50 à 200">50 à 200 commandes</option>
-                                <option value="Plus de 200">Plus de 200 commandes</option>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Depuis combien de temps exercez-vous ? *</label>
+                            <select x-model="formData.anciennete" class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                                <option value="" disabled selected>Sélectionnez...</option>
+                                <option value="Moins de 6 mois">Moins de 6 mois</option>
+                                <option value="6 mois à 1 an">6 mois à 1 an</option>
+                                <option value="1 à 3 ans">1 à 3 ans</option>
+                                <option value="3 à 5 ans">3 à 5 ans</option>
+                                <option value="Plus de 5 ans">Plus de 5 ans</option>
+                                <option value="Autre">Autre</option>
                             </select>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-300 mb-1.5">Taille de l'équipe *</label>
-                            <select x-model="formData.nombre_employes" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
-                                <option value="" disabled selected>Nombre de personnes</option>
-                                <option value="1">1 (Indépendant)</option>
-                                <option value="2-3">2 à 3 personnes</option>
-                                <option value="4-10">4 à 10 personnes</option>
-                                <option value="11+">Plus de 10 personnes</option>
+                            <select x-model="formData.taille_equipe" class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                                <option value="" disabled selected>Sélectionnez...</option>
+                                <option value="Je travaille seul(e)">Je travaille seul(e)</option>
+                                <option value="2 à 5 personnes">2 à 5 personnes</option>
+                                <option value="6 à 10 personnes">6 à 10 personnes</option>
+                                <option value="Plus de 10 personnes">Plus de 10 personnes</option>
                             </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Combien de commandes réalisez-vous par mois ? *</label>
+                        <select x-model="formData.volume_commandes" class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                            <option value="" disabled selected>Sélectionnez...</option>
+                            <option value="Moins de 20">Moins de 20</option>
+                            <option value="20 à 50">20 à 50</option>
+                            <option value="50 à 100">50 à 100</option>
+                            <option value="100 à 300">100 à 300</option>
+                            <option value="Plus de 300">Plus de 300</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Comment recevez-vous principalement vos commandes ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <template x-for="item in ['WhatsApp', 'Appels', 'Facebook / Messenger', 'Instagram', 'En personne', 'Site internet', 'Autre']">
+                                <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center">
+                                        <input type="checkbox" x-model="formData.reception_commandes" :value="item" class="peer sr-only">
+                                        <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300" x-text="item"></span>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Comment suivez-vous actuellement vos commandes ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <template x-for="item in ['WhatsApps', 'Carnet papier', 'Excel / Google Sheets', 'Logiciel', 'Application', 'Je n\'ai pas de système précis', 'Autre']">
+                                <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center">
+                                        <input type="checkbox" x-model="formData.outils_suivi" :value="item" class="peer sr-only">
+                                        <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300" x-text="item"></span>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Quels sont vos principaux problèmes aujourd'hui ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 gap-3">
+                            <template x-for="item in ['Je gère toutes mes commandes sur WhatsApp', 'Je perds parfois des commandes', 'Les clients changent souvent leur design', 'Je n\'ai pas de boutique en ligne', 'Je réponds aux mêmes questions toute la journée', 'Je ne peux pas suivre mes commandes facilement', 'Je souhaite automatiser mon activité', 'Autre']">
+                                <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center">
+                                        <input type="checkbox" x-model="formData.problemes_actuels" :value="item" class="peer sr-only">
+                                        <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300" x-text="item"></span>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Avez-vous déjà rencontré des problèmes à cause d'une mauvaise compréhension d'une personnalisation ? *</label>
+                        <select x-model="formData.frequence_erreurs_com" class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                            <option value="" disabled selected>Sélectionnez...</option>
+                            <option value="Très souvent">Très souvent</option>
+                            <option value="Souvent">Souvent</option>
+                            <option value="Parfois">Parfois</option>
+                            <option value="Rarement">Rarement</option>
+                            <option value="Jamais">Jamais</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Si vous pouviez supprimer une seule difficulté de votre activité, laquelle supprimeriez-vous ? *</label>
+                        <textarea x-model="formData.supprimer_difficulte" rows="3" class="w-full input-glass rounded-xl px-4 py-3 resize-none" placeholder="Votre réponse..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Comment gérez-vous vos paiements aujourd'hui ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <template x-for="item in ['Mobile Money (MoMo, Flooz, Celtis Cash, Wave, etc.)', 'Espèces (Cash)', 'Virement bancaire', 'Autre']">
+                                <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center">
+                                        <input type="checkbox" x-model="formData.moyens_paiement" :value="item" class="peer sr-only">
+                                        <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300" x-text="item"></span>
+                                </label>
+                            </template>
                         </div>
                     </div>
                 </div>
 
-                <!-- STEP 3 : Motivations -->
-                <div x-show="step === 3" x-transition.opacity.duration.300ms x-cloak class="space-y-5">
+                <!-- STEP 3 : Besoins de l'Atelier (Professionnels) -->
+                <div x-show="step === 3" x-transition.opacity.duration.300ms x-cloak class="space-y-6">
+                    <h2 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-2">Vos Besoins</h2>
+
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Quel est votre plus grand défi quotidien dans la gestion de l'atelier ? *</label>
-                        <textarea x-model="formData.probleme_principal" required rows="3" class="w-full input-glass rounded-xl px-4 py-3 resize-none" placeholder="Ex: Suivi des paiements, clients qui demandent des aperçus en permanence..."></textarea>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Parmi ces fonctionnalités, lesquelles seraient les plus urgentes pour vous ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 gap-3">
+                            <template x-for="item in [
+                                'Permettre aux clients de commander et payer en ligne directement',
+                                'Recevoir et gérer facilement les designs/mockups personnalisés des clients',
+                                'Générer des devis automatiquement selon la quantité et la matière',
+                                'Gérer et suivre les expéditions / livraisons',
+                                'Gérer le marketing de la boutique',
+                                'Une boutique en ligne pour mon atelier',
+                                'Un catalogue partageable par lien',
+                                'Un configurateur permettant au client de personnaliser',
+                                'Un aperçu avant fabrication',
+                                'La validation du design par le client',
+                                'Les statistiques'
+                            ]">
+                                <label class="flex items-start gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center mt-0.5">
+                                        <input type="checkbox" x-model="formData.fonctionnalites_urgentes" :value="item" class="peer sr-only">
+                                        <div class="w-5 h-5 flex-shrink-0 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300 leading-tight" x-text="item"></span>
+                                </label>
+                            </template>
+                        </div>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Quelle fonctionnalité de TextileHub vous intéresse le plus ? *</label>
-                        <select x-model="formData.fonctionnalite_cle" required class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
-                            <option value="" disabled selected>Sélectionnez une fonctionnalité</option>
-                            <option value="Boutique en ligne & vitrine">Boutique en ligne & vitrine</option>
-                            <option value="Personnalisateur visuel (Mockups 3D/2D)">Personnalisateur visuel interactif</option>
-                            <option value="Gestion de production (Kanban)">Suivi de production (Statuts)</option>
-                            <option value="Facturation & devis">Devis et facturation auto</option>
-                            <option value="Tout centraliser">Un peu de tout / Centralisation</option>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Qu'aimeriez-vous que TextileHub vous permette de faire que vous ne pouvez pas faire facilement aujourd'hui ? *</label>
+                        <textarea x-model="formData.attente_textilehub" rows="3" class="w-full input-glass rounded-xl px-4 py-3 resize-none" placeholder="Votre réponse..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Si une solution répondait réellement à votre principal problème, seriez-vous prêt à la tester dans votre atelier ? *</label>
+                        <select x-model="formData.pret_a_tester" class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                            <option value="" disabled selected>Sélectionnez...</option>
+                            <option value="Oui, avec grand plaisir !">Oui, avec grand plaisir !</option>
+                            <option value="Oui, si je peux la tester gratuitement">Oui, si je peux la tester gratuitement</option>
+                            <option value="Peut-être">Peut-être</option>
+                            <option value="Je souhaite d'abord voir une démonstration">Je souhaite d'abord voir une démonstration</option>
+                            <option value="Non merci">Non merci</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- STEP 4 : Parcours Client & Utilisateur (Clients/Designers) -->
+                <div x-show="step === 4" x-transition.opacity.duration.300ms x-cloak class="space-y-6">
+                    <h2 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-2">Votre Expérience d'Achat</h2>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Avez-vous déjà commandé un produit personnalisé ? *</label>
+                        <select x-model="formData.deja_commande" class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                            <option value="" disabled selected>Sélectionnez...</option>
+                            <option value="Oui, plusieurs fois">Oui, plusieurs fois</option>
+                            <option value="Oui, une fois">Oui, une fois</option>
+                            <option value="Non, mais cela m'intéresse">Non, mais cela m'intéresse</option>
+                            <option value="Non">Non</option>
                         </select>
                     </div>
 
-                    <div class="pt-4 mt-4 border-t border-white/10">
-                        <label class="flex items-start gap-3 cursor-pointer group">
-                            <div class="relative flex items-center justify-center mt-1">
-                                <input type="checkbox" x-model="formData.consentement_rgpd" required class="peer sr-only">
-                                <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
-                                    <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                </div>
-                            </div>
-                            <span class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
-                                J'accepte que mes données soient traitées dans le cadre de ma candidature au programme fondateur TextileHub. *
-                            </span>
-                        </label>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Comment commandez-vous généralement ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <template x-for="item in ['WhatsApp', 'Appel', 'Réseaux sociaux', 'En personne', 'Site internet', 'Autre']">
+                                <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center">
+                                        <input type="checkbox" x-model="formData.mode_commande" :value="item" class="peer sr-only">
+                                        <div class="w-5 h-5 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300" x-text="item"></span>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Qu'est-ce qui vous dérange le plus lorsque vous commandez un produit personnalisé ? (Choix multiples) *</label>
+                        <div class="grid grid-cols-1 gap-3">
+                            <template x-for="item in [
+                                'Je dois beaucoup expliquer ce que je veux',
+                                'Il est difficile d\'imaginer le résultat final',
+                                'Je ne sais pas exactement où le design sera placé',
+                                'Les modifications prennent du temps',
+                                'Je ne sais pas toujours où en est ma commande',
+                                'Le paiement est compliqué',
+                                'Autre'
+                            ]">
+                                <label class="flex items-start gap-3 cursor-pointer group p-3 rounded-lg border border-white/5 bg-white/[0.02] hover:bg-white/[0.05]">
+                                    <div class="relative flex items-center justify-center mt-0.5">
+                                        <input type="checkbox" x-model="formData.frustrations_client" :value="item" class="peer sr-only">
+                                        <div class="w-5 h-5 flex-shrink-0 rounded border border-white/20 bg-white/5 peer-checked:bg-accent peer-checked:border-accent transition-colors flex items-center justify-center">
+                                            <svg class="w-3.5 h-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                        </div>
+                                    </div>
+                                    <span class="text-sm text-gray-300 leading-tight" x-text="item"></span>
+                                </label>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Avant de commander, aimeriez-vous pouvoir voir exactement à quoi ressemble votre produit personnalisé ? *</label>
+                        <select x-model="formData.importance_apercu" class="w-full input-glass rounded-xl px-4 py-3 appearance-none">
+                            <option value="" disabled selected>Sélectionnez...</option>
+                            <option value="Oui, absolument">Oui, absolument</option>
+                            <option value="Oui, ce serait utile">Oui, ce serait utile</option>
+                            <option value="Cela m'est égal">Cela m'est égal</option>
+                            <option value="Non">Non</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Si vous pouviez améliorer une seule chose dans l'expérience actuelle des commandes personnalisées, qu'est-ce que ce serait ? *</label>
+                        <textarea x-model="formData.amelioration_souhaitee" rows="3" class="w-full input-glass rounded-xl px-4 py-3 resize-none" placeholder="Votre réponse..."></textarea>
+                    </div>
+                </div>
+
+                <!-- STEP 5 : Informations de contact -->
+                <div x-show="step === 5" x-transition.opacity.duration.300ms x-cloak class="space-y-5">
+                    <h2 class="text-xl font-bold text-white mb-6 border-b border-white/10 pb-2">Dernière étape : Contact</h2>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Votre nom et prénom *</label>
+                        <input type="text" x-model="formData.nom_prenom" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Koffi Mensah">
+                    </div>
+
+                    <div x-show="isPro()">
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Nom de votre atelier *</label>
+                        <input type="text" x-model="formData.nom_atelier" class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: CréaTextile Afrique">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Votre adresse email *</label>
+                            <input type="email" x-model="formData.email" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="contact@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Votre numéro WhatsApp *</label>
+                            <input type="tel" x-model="formData.telephone" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="+229 01 23 45 67 89">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Dans quelle ville se trouve votre atelier ? *</label>
+                            <input type="text" x-model="formData.ville" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Cotonou">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1.5">Pays *</label>
+                            <input type="text" x-model="formData.pays" required class="w-full input-glass rounded-xl px-4 py-3" placeholder="Ex: Bénin">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-1.5">Quelle fonctionnalité vous donnerait immédiatement envie d'utiliser TextileHub ? *</label>
+                        <textarea x-model="formData.fonctionnalite_reve" rows="3" required class="w-full input-glass rounded-xl px-4 py-3 resize-none" placeholder="Votre réponse..."></textarea>
                     </div>
                 </div>
 
@@ -306,27 +474,27 @@
                 <div class="mt-10 flex justify-between items-center pt-6 border-t border-white/10">
                     <button type="button" 
                             x-show="step > 1" 
-                            @click="step--"
+                            @click="prevStep()"
                             class="btn-secondary px-6 py-2.5 rounded-full font-medium text-sm flex items-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         Précédent
                     </button>
                     
-                    <div x-show="step === 1" class="w-full"></div> <!-- Spacer for flex alignment -->
+                    <div x-show="step === 1" class="w-full"></div> <!-- Spacer -->
 
                     <button type="button" 
-                            x-show="step < 3" 
-                            @click="validateStep() && step++"
+                            x-show="step < 5" 
+                            @click="nextStep()"
                             class="btn-primary px-8 py-2.5 rounded-full font-medium text-sm flex items-center gap-2 ml-auto">
                         Suivant
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
 
                     <button type="submit" 
-                            x-show="step === 3" 
-                            :disabled="isSubmitting || !formData.consentement_rgpd"
-                            class="btn-primary px-8 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 shadow-glow">
-                        <span x-show="!isSubmitting">Soumettre ma candidature</span>
+                            x-show="step === 5" 
+                            :disabled="isSubmitting"
+                            class="btn-primary px-8 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 shadow-glow ml-auto">
+                        <span x-show="!isSubmitting">Soumettre</span>
                         <span x-show="isSubmitting">Envoi en cours...</span>
                         <svg x-show="!isSubmitting" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         <svg x-show="isSubmitting" class="animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
@@ -338,16 +506,16 @@
 
             </form>
 
-            <!-- STEP 4 : Success -->
-            <div x-show="step === 4" x-cloak class="text-center py-10" x-transition.opacity.duration.500ms>
+            <!-- STEP 6 : Success -->
+            <div x-show="step === 6" x-cloak class="text-center py-10" x-transition.opacity.duration.500ms>
                 <div class="w-20 h-20 mx-auto rounded-full bg-success/20 flex items-center justify-center mb-6">
                     <div class="w-14 h-14 rounded-full bg-success flex items-center justify-center shadow-[0_0_30px_rgba(16,185,129,0.5)]">
                         <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                     </div>
                 </div>
-                <h2 class="text-3xl font-display font-bold text-white mb-4">Candidature reçue !</h2>
+                <h2 class="text-3xl font-display font-bold text-white mb-4">Merci pour vos réponses !</h2>
                 <p class="text-textMuted text-lg max-w-md mx-auto mb-8">
-                    Merci pour votre intérêt. Notre équipe étudiera votre profil et vous contactera très prochainement.
+                    Votre contribution est précieuse pour nous aider à construire la meilleure plateforme possible.
                 </p>
                 <a href="index.html" class="inline-block btn-secondary px-8 py-3 rounded-full font-medium transition-colors">
                     Retour à l'accueil
@@ -364,27 +532,120 @@
                 isSubmitting: false,
                 errorMessage: '',
                 formData: {
-                    prenom: '',
-                    nom: '',
-                    email: '',
-                    telephone: '',
-                    pays: 'Bénin',
-                    ville: '',
-                    nom_atelier: '',
-                    type_activite: '',
-                    nombre_employes: '',
+                    profil: '',
+                    types_activite: [],
+                    anciennete: '',
+                    taille_equipe: '',
                     volume_commandes: '',
-                    probleme_principal: '',
-                    fonctionnalite_cle: '',
-                    consentement_rgpd: false,
-                    source: 'landing_page'
+                    reception_commandes: [],
+                    outils_suivi: [],
+                    problemes_actuels: [],
+                    frequence_erreurs_com: '',
+                    supprimer_difficulte: '',
+                    moyens_paiement: [],
+                    
+                    fonctionnalites_urgentes: [],
+                    attente_textilehub: '',
+                    pret_a_tester: '',
+                    
+                    deja_commande: '',
+                    mode_commande: [],
+                    frustrations_client: [],
+                    importance_apercu: '',
+                    amelioration_souhaitee: '',
+                    
+                    nom_prenom: '',
+                    nom_atelier: '',
+                    telephone: '',
+                    email: '',
+                    ville: '',
+                    pays: 'Bénin',
+                    fonctionnalite_reve: ''
+                },
+                
+                isPro() {
+                    return ['atelier', 'employe'].includes(this.formData.profil);
+                },
+                
+                getProgress() {
+                    if (this.step === 1) return 20;
+                    if (this.step === 2) return 40;
+                    if (this.step === 3) return 60;
+                    if (this.step === 4) return 60;
+                    if (this.step === 5) return 85;
+                    if (this.step === 6) return 100;
+                    return 0;
+                },
+
+                getProgressText() {
+                    if (this.step === 1) return "Étape 1 sur 4";
+                    if (this.isPro()) {
+                        if (this.step === 2) return "Étape 2 sur 4";
+                        if (this.step === 3) return "Étape 3 sur 4";
+                        if (this.step === 5) return "Étape 4 sur 4";
+                    } else {
+                        if (this.step === 4) return "Étape 2 sur 3";
+                        if (this.step === 5) return "Étape 3 sur 3";
+                    }
+                    return "";
+                },
+
+                nextStep() {
+                    if (!this.validateStep()) return;
+                    
+                    if (this.step === 1) {
+                        this.step = this.isPro() ? 2 : 4;
+                    } else if (this.step === 2) {
+                        this.step = 3;
+                    } else if (this.step === 3) {
+                        this.step = 5;
+                    } else if (this.step === 4) {
+                        this.step = 5;
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                },
+
+                prevStep() {
+                    this.errorMessage = '';
+                    if (this.step === 2 || this.step === 4) {
+                        this.step = 1;
+                    } else if (this.step === 3) {
+                        this.step = 2;
+                    } else if (this.step === 5) {
+                        this.step = this.isPro() ? 3 : 4;
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 },
                 
                 validateStep() {
                     this.errorMessage = '';
                     if (this.step === 1) {
-                        if (!this.formData.prenom || !this.formData.nom || !this.formData.email || !this.formData.telephone || !this.formData.pays || !this.formData.ville) {
-                            this.errorMessage = 'Veuillez remplir tous les champs obligatoires à cette étape.';
+                        if (!this.formData.profil) {
+                            this.errorMessage = 'Veuillez sélectionner votre profil.';
+                            return false;
+                        }
+                    } else if (this.step === 2) {
+                        if (!this.formData.types_activite.length || !this.formData.anciennete || !this.formData.taille_equipe || !this.formData.volume_commandes || !this.formData.reception_commandes.length || !this.formData.outils_suivi.length || !this.formData.problemes_actuels.length || !this.formData.frequence_erreurs_com || !this.formData.supprimer_difficulte || !this.formData.moyens_paiement.length) {
+                            this.errorMessage = 'Veuillez remplir tous les champs de cette section.';
+                            return false;
+                        }
+                    } else if (this.step === 3) {
+                        if (!this.formData.fonctionnalites_urgentes.length || !this.formData.attente_textilehub || !this.formData.pret_a_tester) {
+                            this.errorMessage = 'Veuillez remplir tous les champs de cette section.';
+                            return false;
+                        }
+                    } else if (this.step === 4) {
+                        if (!this.formData.deja_commande || !this.formData.mode_commande.length || !this.formData.frustrations_client.length || !this.formData.importance_apercu || !this.formData.amelioration_souhaitee) {
+                            this.errorMessage = 'Veuillez remplir tous les champs de cette section.';
+                            return false;
+                        }
+                    } else if (this.step === 5) {
+                        if (!this.formData.nom_prenom || !this.formData.telephone || !this.formData.email || !this.formData.ville || !this.formData.pays || !this.formData.fonctionnalite_reve) {
+                            this.errorMessage = 'Veuillez remplir tous les champs obligatoires.';
+                            return false;
+                        }
+                        if (this.isPro() && !this.formData.nom_atelier) {
+                            this.errorMessage = 'Veuillez renseigner le nom de votre atelier.';
                             return false;
                         }
                         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -392,21 +653,13 @@
                             this.errorMessage = 'Veuillez entrer une adresse email valide.';
                             return false;
                         }
-                    } else if (this.step === 2) {
-                        if (!this.formData.nom_atelier || !this.formData.type_activite || !this.formData.volume_commandes || !this.formData.nombre_employes) {
-                            this.errorMessage = 'Veuillez remplir tous les champs obligatoires à cette étape.';
-                            return false;
-                        }
-                    } else if (this.step === 3) {
-                        if (!this.formData.probleme_principal || !this.formData.fonctionnalite_cle || !this.formData.consentement_rgpd) {
-                            this.errorMessage = 'Veuillez remplir tous les champs et accepter les conditions.';
-                            return false;
-                        }
                     }
                     return true;
                 },
 
                 async submitForm() {
+                    if (!this.validateStep()) return;
+                    
                     this.errorMessage = '';
                     this.isSubmitting = true;
 
@@ -416,35 +669,24 @@
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({
-                                ...this.formData,
-                                consentement_rgpd: this.formData.consentement_rgpd ? 1 : 0
-                            })
+                            body: JSON.stringify(this.formData)
                         });
 
                         const contentType = response.headers.get('content-type') || '';
-                        let data;
+                        let data = {};
 
                         if (contentType.includes('application/json')) {
                             data = await response.json();
-                        } else {
-                            const text = await response.text();
-                            console.error('Réponse non JSON du serveur:', text);
-                            throw new Error(`Le serveur a retourné une réponse non JSON (${response.status}).`);
                         }
 
                         if (response.ok) {
-                            this.step = 4; // Show success screen
+                            this.step = 6; // Success step
                         } else {
                             this.errorMessage = data.message || 'Une erreur est survenue lors de l\'envoi.';
                         }
                     } catch (error) {
                         console.error('Erreur Fetch:', error);
-                        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-                            this.errorMessage = 'Impossible de contacter le serveur. Vérifiez votre connexion et réessayez.';
-                        } else {
-                            this.errorMessage = `Erreur de connexion (${error.message}). Veuillez réessayer.`;
-                        }
+                        this.errorMessage = 'Impossible de contacter le serveur. Vérifiez votre connexion et réessayez.';
                     } finally {
                         this.isSubmitting = false;
                     }
