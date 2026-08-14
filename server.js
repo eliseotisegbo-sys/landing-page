@@ -26,9 +26,10 @@ app.use(express.static(__dirname));
 // ===============================
 // SUPABASE
 // ===============================
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+// Configuration Supabase
+const supabaseUrl = (process.env.SUPABASE_URL || '').trim();
+let rawKey = process.env.SUPABASE_ANON_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const supabaseKey = rawKey.replace(/\s+/g, ''); // Remove ALL whitespaces including newlines
 
 let supabase = null;
 let supabaseConfigured = false;
