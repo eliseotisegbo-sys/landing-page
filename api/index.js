@@ -86,8 +86,8 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
         const paysStr = (data.pays || '').toLowerCase();
         const paysIso = paysStr.includes('bénin') || paysStr.includes('benin') ? 'BJ' :
             paysStr.includes('togo') ? 'TG' :
-            paysStr.includes('côte d') || paysStr.includes('cote d') ? 'CI' :
-            paysStr.includes('sénégal') || paysStr.includes('senegal') ? 'SN' : undefined;
+                paysStr.includes('côte d') || paysStr.includes('cote d') ? 'CI' :
+                    paysStr.includes('sénégal') || paysStr.includes('senegal') ? 'SN' : undefined;
 
         const phoneNumber = parsePhoneNumberFromString(data.telephone, paysIso);
         if (!phoneNumber || !phoneNumber.isValid()) {
@@ -176,8 +176,8 @@ app.post('/api/candidatures', apiLimiter, async (req, res) => {
             return res.status(503).json({ success: false, message: 'Service de base de données temporairement indisponible.' });
         }
 
-        return res.status(500).json({ 
-            success: false, 
+        return res.status(500).json({
+            success: false,
             message: 'Erreur interne du serveur: ' + (error.message || 'Erreur inconnue'),
             details: error.details || error.hint || error.toString()
         });
